@@ -19,8 +19,7 @@ printf "\
 printf "\
   $HOST_NM \
   " > /etc/hosts
-  
-hostname ${HOST_NM}
+
 systemctl hostname restart
 
 # #install docker
