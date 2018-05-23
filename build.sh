@@ -43,6 +43,9 @@ printf "\
     nameserver 8.8.4.4 \n \
     " > /etc/resolv.conf
 
+sed -i 's/PermitRootLogin/#PermitRootLogin/' /etc/ssh/sshd_config
+echo PermitRootLogin yes >> /etc/ssh/sshd_config
+
 #disable networkmanager
 systemctl disable NetworkManager.service
 reboot
