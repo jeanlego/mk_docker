@@ -7,6 +7,7 @@
 
 #set hostname
 HOST_NM=$(cat /sys/class/net/eth0/address  | tr -d :)
+hostname $HOST_NM
 printf "\
   127.0.0.1   localhost $HOST_NM \n\
   ::1         localhost $HOST_NM ip6-localhost ip6-loopback \n\
