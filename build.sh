@@ -37,3 +37,4 @@ systemctl hostname restart
 
 # usermod -aG docker root
 # usermod -aG docker admin
+reboot
