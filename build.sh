@@ -8,19 +8,21 @@ sed -i 's/pine64so/$HOST_NM/g' /etc/hostname
 hostname $HOST_NM
 systemctl hostname restart
 
-#install docker
-apt-get install --fix-missing --reinstall \
-     apt-transport-https \
+APP_LIST=apt-transport-https \
      ca-certificates \
      curl \
      gnupg2 \
      ntpdate \
      software-properties-common
      
+#install docker
+apt-get install --fix-missing --reinstall $APP_LIST
+apt-get install --fix-missing $APP_LIST
+     
 curl -fsSLk https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 apt-key fingerprint 0EBFCD88
 add-apt-repository "deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-apt-get update --no-check-certificate
+apt-get update
 apt-get install -y docker-ce
 
 #install docker compose
