@@ -1,21 +1,18 @@
 #!/bin/bash
-apt-get update && apt-get upgrade -y.
+apt-get update && apt-get upgrade -y
+apt-get install --fix-missing -y ca-certificates curl gnupg2 ntpdate software-properties-common ntpdate apt-transport-https hostname
 
-cd /tmp
-git clone https://github.com/jeanlego/mk_docker.git && cd mk_docker
-cp -Rf certs/. /usr/local/share/ca-certificates
+#synchronize time
+ntpdate -u pool.ntp.org && hwclock -w
 
 #set hostname
 HOST_NM=$(cat /sys/class/net/eth0/address  | tr -d :)
 sed -i 's/pine64so/${HOST_NM}/g' /etc/hosts
 sed -i 's/pine64so/${HOST_NM}/g' /etc/hostname
-hostname $HOST_NM
+hostname ${HOST_NM}
 systemctl hostname restart
 
 #install docker
-apt-get install --fix-missing --reinstall -y apt-transport-https
-apt-get install --fix-missing -y ca-certificates curl gnupg2 ntpdate software-properties-common
-     
 curl -fsSLk https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 apt-key fingerprint 0EBFCD88
 add-apt-repository "deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
