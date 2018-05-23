@@ -18,7 +18,7 @@ printf "\
 
 printf "\
   $HOST_NM \
-  " > /etc/hosts
+  " > /etc/hostname
 
 # #install docker
 # curl -fsSLk https://download.docker.com/linux/ubuntu/gpg | apt-key add -
