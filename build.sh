@@ -20,8 +20,6 @@ printf "\
   $HOST_NM \
   " > /etc/hosts
 
-systemctl hostname restart
-
 # #install docker
 # curl -fsSLk https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 # apt-key fingerprint 0EBFCD88
