@@ -2,7 +2,7 @@
 
 #synchronize time
 apt-get update
-apt-get install --fix-missing ntpdate
+apt-get install --fix-missing -y ntpdate
 ntpdate -u pool.ntp.org && hwclock -w
 
 #install docker
@@ -19,9 +19,7 @@ curl -Lk https://github.com/docker/compose/releases/download/1.21.2/docker-compo
 chmod +x /usr/local/bin/docker-compose
 
 #set permissions
-groupadd docker
-usermod -aG docker root
-usermod -aG docker admin
+groupadd docker && usermod -aG docker root
 
 #set hostname
 HOST_NM=$(cat /sys/class/net/eth0/address  | tr -d :)
