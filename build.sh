@@ -9,12 +9,14 @@ hostname $HOST_NM
 systemctl hostname restart
 
 #install docker
-apt-get install --fix-missing \
+apt-get install --fix-missing --reinstall \
      apt-transport-https \
      ca-certificates \
      curl \
      gnupg2 \
+     ntpdate \
      software-properties-common
+     
 curl -fsSLk https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 apt-key fingerprint 0EBFCD88
 add-apt-repository "deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
