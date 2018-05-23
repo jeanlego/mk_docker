@@ -1,9 +1,11 @@
 #!/bin/bash
+rm -f /etc/network/interfaces
 printf "\
-     nameserver 8.8.8.8 \n\
-     nameserver 8.8.4.4 \n\
-     " >> /etc/resolvconf/resolv.conf.d/head
-sudo resolvconf -u
+     allow-hotplug eth0 \n\
+     iface eth0 inet dhcp \n\
+     dns-nameservers 8.8.8.8 8.8.4.4 \n\
+     " > /etc/network/interfaces
+systemctl restart networking
 
 apt-get update && apt-get upgrade -y
 
