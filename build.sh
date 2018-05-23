@@ -8,12 +8,7 @@ sed -i 's/pine64so/$HOST_NM/g' /etc/hostname
 hostname $HOST_NM
 systemctl hostname restart
 
-APP_LIST=apt-transport-https \
-     ca-certificates \
-     curl \
-     gnupg2 \
-     ntpdate \
-     software-properties-common
+APP_LIST=$(echo apt-transport-https ca-certificates curl gnupg2 ntpdate software-properties-common)
      
 #install docker
 apt-get install --fix-missing --reinstall $APP_LIST
