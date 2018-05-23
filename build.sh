@@ -17,7 +17,7 @@ printf "\
   " > /etc/hosts
 
 printf "\
-  $HOST_NM \
+  $HOST_NM \n\
   " > /etc/hostname
 
 # #install docker
