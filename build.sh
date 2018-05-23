@@ -3,8 +3,8 @@ apt-get update && apt-get upgrade -y
 
 #set hostname
 HOST_NM=$(cat /sys/class/net/eth0/address  | tr -d :)
-sed -i 's/pine64so/$HOST_NM/g' /etc/hosts
-sed -i 's/pine64so/$HOST_NM/g' /etc/hostname
+sed -i 's/pine64so/${HOST_NM}/g' /etc/hosts
+sed -i 's/pine64so/${HOST_NM}/g' /etc/hostname
 hostname $HOST_NM
 systemctl hostname restart
 
