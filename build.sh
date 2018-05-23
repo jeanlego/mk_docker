@@ -9,8 +9,8 @@ hostname $HOST_NM
 systemctl hostname restart
 
 #install docker
-apt-get install --fix-missing --reinstall apt-transport-https
-apt-get install --fix-missing ca-certificates curl gnupg2 ntpdate software-properties-common
+apt-get install --fix-missing --reinstall -y apt-transport-https
+apt-get install --fix-missing -y ca-certificates curl gnupg2 ntpdate software-properties-common
      
 curl -fsSLk https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 apt-key fingerprint 0EBFCD88
