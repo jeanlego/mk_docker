@@ -7,8 +7,19 @@
 
 #set hostname
 HOST_NM=$(cat /sys/class/net/eth0/address  | tr -d :)
-sed -i 's/HOST_NM/${HOST_NM}/g' /etc/hosts
-sed -i 's/HOST_NM/${HOST_NM}/g' /etc/hostname
+printf "\
+  127.0.0.1   localhost $HOST_NM \n\
+  ::1         localhost $HOST_NM ip6-localhost ip6-loopback \n\
+  fe00::0     ip6-localnet \n\
+  ff00::0     ip6-mcastprefix \n\
+  ff02::1     ip6-allnodes \n\
+  ff02::2     ip6-allrouters \n\
+  " > /etc/hosts
+
+printf "\
+  $HOST_NM \
+  " > /etc/hosts
+  
 hostname ${HOST_NM}
 systemctl hostname restart
 
