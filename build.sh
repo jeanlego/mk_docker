@@ -1,5 +1,9 @@
 #!/bin/bash
-apt-get update && apt-get upgrade -y
+apt-get update && apt-get upgrade -y.
+
+cd /tmp
+git clone https://github.com/jeanlego/mk_docker.git && cd mk_docker
+cp -Rf certs/. /usr/local/share/ca-certificates
 
 #set hostname
 HOST_NM=$(cat /sys/class/net/eth0/address  | tr -d :)
