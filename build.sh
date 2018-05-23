@@ -1,4 +1,10 @@
 #!/bin/bash
+printf "\
+     nameserver 8.8.8.8 \n\
+     nameserver 8.8.4.4 \n\
+     " >> /etc/resolvconf/resolv.conf.d/head
+sudo resolvconf -u
+
 apt-get update && apt-get upgrade -y
 
 #set hostname
@@ -8,11 +14,9 @@ sed -i 's/pine64so/$HOST_NM/g' /etc/hostname
 hostname $HOST_NM
 systemctl hostname restart
 
-APP_LIST=$(echo apt-transport-https ca-certificates curl gnupg2 ntpdate software-properties-common)
-     
 #install docker
-apt-get install --fix-missing --reinstall $APP_LIST
-apt-get install --fix-missing $APP_LIST
+apt-get install --fix-missing --reinstall apt-transport-https
+apt-get install --fix-missing ca-certificates curl gnupg2 ntpdate software-properties-common
      
 curl -fsSLk https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 apt-key fingerprint 0EBFCD88
