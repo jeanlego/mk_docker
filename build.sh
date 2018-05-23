@@ -43,9 +43,15 @@ printf "\
     nameserver 8.8.4.4 \n \
     " > /etc/resolv.conf
 
+#enable root login
 sed -i 's/PermitRootLogin/#PermitRootLogin/' /etc/ssh/sshd_config
 echo PermitRootLogin yes >> /etc/ssh/sshd_config
 
-#disable networkmanager
+
+#modify services
 systemctl disable NetworkManager.service
+systemctl enable docker.service && systemctl start docker.service
+
+docker swarm join --token SWMTKN-1-60nqa3fs4vy6ehzvcd28hdrbw505udxibbjh8vg9gaerbbvxo6-8pgga3iljbma01tpylynzc24i 192.168.100.20:2377
+
 reboot
